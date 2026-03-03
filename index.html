@@ -195,7 +195,9 @@ body{
 
 // Show age popup automatically
 window.onload = function(){
-  document.getElementById("agePopup").style.display="flex";
+  setTimeout(function(){
+    document.getElementById("agePopup").style.display="flex";
+  }, 5000); // 5000ms = 5 seconds
 };
 
 // Redirect function
@@ -230,4 +232,5 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 
 </body>
+
 </html>
