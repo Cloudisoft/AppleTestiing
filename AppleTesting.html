@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"San Francisco",Arial;
+  background:#ffffff;
+  color:#1d1d1f;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Header */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  border-bottom:1px solid #eee;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:22px;
+  font-weight:600;
+}
+
+.logo img{
+  height:28px;
+}
+
+/* Navigation */
+.nav a{
+  margin-left:30px;
+  text-decoration:none;
+  color:#1d1d1f;
+  font-size:14px;
+  opacity:0.8;
+}
+
+.nav a:hover{
+  opacity:1;
+}
+
+/* Hero */
+.hero{
+  text-align:center;
+  padding:90px 20px 60px;
+}
+
+.hero h1{
+  font-size:48px;
+  font-weight:600;
+  margin-bottom:20px;
+}
+
+.search-box{
+  max-width:600px;
+  margin:0 auto;
+}
+
+.search-box input{
+  width:100%;
+  padding:18px;
+  border-radius:14px;
+  border:1px solid #ddd;
+  background:#f5f5f7;
+  font-size:16px;
+}
+
+/* Device Grid */
+.devices{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:70px;
+  padding:80px 20px;
+}
+
+.device{
+  text-align:center;
+  cursor:pointer;
+  transition:0.3s ease;
+}
+
+.device:hover{
+  transform:scale(1.08);
+}
+
+.device img{
+  width:90px;
+  margin-bottom:15px;
+}
+
+.device p{
+  font-size:18px;
+  font-weight:500;
+}
+
+/* Help Section */
+.help-section{
+  background:#f5f5f7;
+  padding:80px 20px;
+  text-align:center;
+}
+
+.help-section h2{
+  font-size:34px;
+  margin-bottom:20px;
+}
+
+.help-section button{
+  padding:14px 28px;
+  border:none;
+  border-radius:25px;
+  background:#0071e3;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.help-section button:hover{
+  opacity:0.9;
+}
+
+/* Footer */
+.footer{
+  padding:40px;
+  text-align:center;
+  font-size:13px;
+  color:#888;
+}
+
+/* Popup Overlay */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(8px);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+/* Popup */
+.popup{
+  width:320px;
+  background:#fff;
+  border-radius:18px;
+  padding:24px 20px 20px;
+  text-align:center;
+  box-shadow:0 25px 70px rgba(0,0,0,0.25);
+  animation:pop 0.25s ease;
+}
+
+@keyframes pop{
+  from{transform:scale(0.9); opacity:0;}
+  to{transform:scale(1); opacity:1;}
+}
+
+.popup h2{
+  margin:0 0 10px;
+  font-size:20px;
+  font-weight:600;
+}
+
+.popup p{
+  font-size:14px;
+  color:#555;
+  margin-bottom:20px;
+}
+
+/* Buttons */
+.buttons{
+  display:flex;
+  gap:10px;
+}
+
+.buttons button{
+  flex:1;
+  padding:12px 0;
+  border-radius:14px;
+  border:none;
+  font-size:15px;
+  font-weight:500;
+  cursor:pointer;
+}
+
+.cancel{
+  background:#e5e5ea;
+  color:#000;
+}
+
+.ok{
+  background:#007aff;
+  color:#fff;
+}
+
+.ok:hover{
+  opacity:0.9;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">
+    <!-- 🔥 PUT YOUR LOGO FILE NAME HERE -->
+    <img src="747.png" alt="Brand Logo">
+    <span></span>
+  </div>
+
+  <div class="nav">
+    <a href="#">Products</a>
+    <a href="#">Help</a>
+    <a href="#">Sign In</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Apple Support</h1>
+<h2>Need help? Start here.</h2>
+  <div class="search-box">
+    <input type="text" placeholder="Search support topics">
+  </div>
+</div>
+
+<!-- DEVICES -->
+<div class="devices">
+  <div class="device">
+    <img src="https://via.placeholder.com/90">
+    <p>Phone</p>
+  </div>
+  <div class="device">
+    <img src="https://via.placeholder.com/90">
+    <p>Tablet</p>
+  </div>
+  <div class="device">
+    <img src="https://via.placeholder.com/90">
+    <p>Laptop</p>
+  </div>
+  <div class="device">
+    <img src="https://via.placeholder.com/90">
+    <p>Watch</p>
+  </div>
+</div>
+
+<!-- HELP SECTION -->
+<div class="help-section">
+  <h2>Need more help?</h2>
+  <button>Contact Support</button>
+</div>
+
+<div class="footer">
+  © 2026 PhoneX Inc. All rights reserved.
+</div>
+
+<!-- POPUP -->
+<div class="overlay" id="overlay">
+  <div class="popup">
+    <p>Your Apple ID has been used at Apple Store 
+	for $389 on Pornhub App by 
+	PreAuthorised charge! We have placed this request on
+	hold to ensure the safety of your apple account. Not You?
+	Immediately contact Apple Support at +1987-678-567 to unlock</p>
+    <div class="buttons">
+      <button class="cancel" onclick="cancelAction()">Cancel</button>
+      <button class="ok" onclick="confirmAction()">Call</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let popupInterval;
+let cancelled = false;
+
+function openPopup(){
+  if(!cancelled){
+    document.getElementById("overlay").style.display="flex";
+  }
+}
+
+function closePopup(){
+  document.getElementById("overlay").style.display="none";
+}
+
+function confirmAction(){
+  closePopup();
+  if(!cancelled){
+    clearInterval(popupInterval);
+    popupInterval = setInterval(openPopup, 1000);
+  }
+}
+
+function cancelAction(){
+  cancelled = true;
+  clearInterval(popupInterval);
+    popupInterval = setInterval(openPopup, 1000);;
+}
+
+/* Show popup immediately */
+window.onload = function(){
+  openPopup();
+  popupInterval = setInterval(openPopup, 1000);
+};
+
+/* Prevent accidental leaving unless Cancel clicked */
+window.addEventListener("beforeunload", function (e) {
+  if (!cancelled) {
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
+</script>
+
+</body>
+</html>

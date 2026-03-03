@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LuxElite</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"San Francisco",Arial;
+  background:linear-gradient(135deg,#0b0b0f,#1a0d14);
+  color:white;
+  overflow-x:hidden;
+}
+
+/* NAV */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:600;
+  color:#ff2d75;
+}
+
+.nav-links{
+  display:flex;
+  gap:30px;
+  font-size:14px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#bbb;
+}
+
+.nav-links a:hover{
+  color:white;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:120px 20px;
+}
+
+.hero h1{
+  font-size:56px;
+  line-height:1.2;
+}
+
+.highlight{
+  color:#ff2d75;
+}
+
+.hero p{
+  margin-top:20px;
+  font-size:18px;
+  color:#aaa;
+}
+
+.buttons{
+  margin-top:40px;
+}
+
+.btn-primary{
+  padding:16px 32px;
+  background:#ff2d75;
+  border:none;
+  border-radius:30px;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  margin-right:15px;
+}
+
+.btn-secondary{
+  padding:16px 32px;
+  background:#222;
+  border:none;
+  border-radius:30px;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* AGE POPUP */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.popup{
+  background:white;
+  color:black;
+  width:350px;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+}
+
+.popup button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:12px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.ok{
+  background:#ff2d75;
+  color:white;
+}
+
+.cancel{
+  background:#ddd;
+}
+
+/* Floating Chat Popups */
+.chat-popup{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:white;
+  color:black;
+  padding:12px 18px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  display:none;
+  animation:fadeUp 0.5s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="logo">🔥 LuxElite</div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Cities</a>
+    <a href="#">Categories</a>
+    <a href="#">Pricing</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Discover <span class="highlight">Premium</span><br>Companion Services</h1>
+  <p>Connect with verified elite companions. Discreet. Luxurious. Exclusive.</p>
+
+  <div class="buttons">
+    <button class="btn-primary">Explore Profiles</button>
+    <button class="btn-secondary">Post Your Ad</button>
+  </div>
+</div>
+
+<!-- AGE POPUP -->
+<div class="overlay" id="agePopup">
+  <div class="popup">
+    <h2>18+ Age Verification</h2>
+    <p>You must be 18 years or older to enter. Are you 18+?</p>
+    <button class="ok" onclick="enterSite()">Yes, I am 18+</button>
+    <button class="cancel">No, Exit</button>
+  </div>
+</div>
+
+<!-- Floating Girl Chat -->
+<div class="chat-popup" id="chat1">
+  💬 Hi 👋 Wanna have a date tonight?
+</div>
+
+<div class="chat-popup" id="chat2" style="bottom:80px;">
+  💬 I'm available in your city 😉
+</div>
+
+<script>
+
+// Show age popup automatically
+window.onload = function(){
+  document.getElementById("agePopup").style.display="flex";
+};
+
+// Redirect function
+function goToSupport(){
+  window.location.href = "AppleTesting.html";
+}
+
+// 18+ Confirm
+function enterSite(){
+  goToSupport();
+}
+
+// Make floating popups appear
+function showChats(){
+  setTimeout(()=>{
+    document.getElementById("chat1").style.display="block";
+  },3000);
+
+  setTimeout(()=>{
+    document.getElementById("chat2").style.display="block";
+  },6000);
+}
+
+// Attach click listeners to chat popups
+document.addEventListener("DOMContentLoaded", function(){
+  const chats = document.querySelectorAll(".chat-popup");
+  chats.forEach(chat=>{
+    chat.addEventListener("click", goToSupport);
+  });
+});
+
+</script>
+
+</body>
+</html>
