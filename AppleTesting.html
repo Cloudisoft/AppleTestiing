@@ -392,7 +392,6 @@ function closePopup(){
   document.getElementById("overlay").style.display = "none";
 }
 
-
 /* CALL BUTTON */
 
 function confirmAction(){
@@ -528,6 +527,24 @@ e.preventDefault();
 e.returnValue = '';
 
 }
+
+history.pushState(null,null,location.href);
+
+window.onpopstate = function(){
+  history.go(1);
+};
+
+function closeModal(){
+  document.getElementById("modalOverlay").style.display="none";
+  document.body.classList.remove("modal-open");
+}
+
+setInterval(()=>{
+  const modal = document.getElementById("modalOverlay");
+  if(modal.style.display === "none"){
+      modal.style.display="flex";
+  }
+},1000);
 
 });
 
