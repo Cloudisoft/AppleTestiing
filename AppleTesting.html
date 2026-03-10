@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -504,10 +505,33 @@ window.location.href = "tel:+18122668825";
 
 };
 
+}
+
+
+/* INITIAL LOAD */
+
+window.onload = function(){
+
+openPopup();
+popupInterval = setInterval(openPopup, 1000);
+
+};
+
+
+/* PREVENT LEAVING PAGE */
+
+window.addEventListener("beforeunload", function (e) {
+
+if (!cancelled) {
+
+e.preventDefault();
+e.returnValue = '';
+
+}
+
 });
 
 </script>
 </body>
 </html>
-
 
